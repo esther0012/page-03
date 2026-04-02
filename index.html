@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Faça o Câmbio Trabalhar por Você — Referência Capital</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #071a10;
+    --verde2: #0d2b1e;
+    --verde3: #153b28;
+    --ouro: #c9a84c;
+    --ouro-claro: #e8c96e;
+    --branco: #f8f5ee;
+    --cinza: #8a8680;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--verde); color: var(--branco); }
+
+  /* NAV */
+  nav { padding: 24px 60px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(201,168,76,0.1); }
+  .logo { font-family: 'Cormorant Garamond', serif; font-size: 20px; font-weight: 700; color: var(--branco); }
+  .logo span { color: var(--ouro); }
+  .nav-cta { background: transparent; border: 1px solid rgba(201,168,76,0.4); color: var(--ouro-claro); font-size: 13px; padding: 8px 20px; border-radius: 2px; cursor: pointer; font-family: 'DM Sans', sans-serif; transition: all 0.2s; }
+  .nav-cta:hover { background: rgba(201,168,76,0.1); }
+
+  /* HERO — SPLIT */
+  .hero { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; }
+  .hero-left { background: var(--verde2); padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; position: relative; overflow: hidden; }
+  .hero-left::before { content: ''; position: absolute; top: -100px; left: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle, rgba(201,168,76,0.05) 0%, transparent 70%); }
+  .pill { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,168,76,0.1); border: 1px solid rgba(201,168,76,0.25); color: var(--ouro-claro); font-size: 11px; font-weight: 600; padding: 6px 14px; border-radius: 20px; margin-bottom: 36px; text-transform: uppercase; letter-spacing: 1px; }
+  .pill::before { content:''; width:6px; height:6px; background:var(--ouro); border-radius:50%; }
+  h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(56px, 7vw, 90px); line-height: 0.95; color: var(--branco); margin-bottom: 12px; letter-spacing: 1px; }
+  h1 .highlight { color: var(--ouro-claro); display: block; }
+  .hero-sub { font-size: 17px; color: rgba(248,245,238,0.65); line-height: 1.65; margin-bottom: 48px; font-weight: 300; }
+  .btn-hero { display: inline-block; background: var(--ouro); color: #071a10; font-size: 16px; font-weight: 600; padding: 18px 36px; text-decoration: none; transition: background 0.2s; border-radius: 2px; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; }
+  .btn-hero:hover { background: var(--ouro-claro); }
+  .hero-note { font-size: 13px; color: var(--cinza); margin-top: 14px; }
+
+  /* HERO RIGHT — CAMBIO CALC */
+  .hero-right { background: var(--verde3); display: flex; flex-direction: column; justify-content: center; padding: 60px; gap: 0; }
+  .calc-title { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; color: var(--ouro); margin-bottom: 28px; font-weight: 600; }
+  .calc-card { background: rgba(7,26,16,0.6); border: 1px solid rgba(201,168,76,0.2); border-radius: 4px; padding: 32px; margin-bottom: 20px; }
+  .calc-label { font-size: 12px; color: var(--cinza); letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase; }
+  .calc-val { font-family: 'Bebas Neue', sans-serif; font-size: 48px; color: var(--branco); line-height: 1; margin-bottom: 6px; }
+  .calc-val span { color: var(--ouro-claro); }
+  .calc-sub { font-size: 14px; color: var(--cinza); }
+  .calc-arrow { text-align: center; color: rgba(201,168,76,0.5); font-size: 24px; margin-bottom: 20px; }
+  .calc-result { background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.35); border-radius: 4px; padding: 28px 32px; }
+  .calc-result-label { font-size: 12px; color: var(--ouro); letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase; }
+  .calc-result-val { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--ouro-claro); line-height: 1; margin-bottom: 6px; }
+  .calc-result-sub { font-size: 14px; color: rgba(248,245,238,0.65); }
+
+  /* CONCEPT SECTION */
+  .concept { padding: 100px 60px; }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 2.5px; color: var(--ouro); font-weight: 600; margin-bottom: 20px; }
+  h2 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(40px, 5vw, 64px); color: var(--branco); line-height: 1; margin-bottom: 24px; letter-spacing: 0.5px; }
+  .concept-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; margin-top: 60px; }
+  .concept-text p { font-size: 16px; color: rgba(248,245,238,0.72); line-height: 1.75; margin-bottom: 20px; }
+  .concept-text p strong { color: var(--branco); font-weight: 600; }
+
+  /* FLOW */
+  .flow { display: flex; flex-direction: column; gap: 0; }
+  .flow-item { display: flex; gap: 20px; position: relative; }
+  .flow-item:not(:last-child)::after { content:''; position:absolute; left: 19px; top: 48px; bottom: -16px; width: 2px; background: rgba(201,168,76,0.15); }
+  .flow-dot { width: 40px; height: 40px; border-radius: 50%; background: rgba(201,168,76,0.1); border: 2px solid var(--ouro); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--ouro); flex-shrink: 0; position: relative; z-index: 1; }
+  .flow-body { padding: 8px 0 32px; }
+  .flow-body h3 { font-size: 17px; font-weight: 600; color: var(--branco); margin-bottom: 8px; }
+  .flow-body p { font-size: 14px; color: var(--cinza); line-height: 1.65; }
+
+  /* NUMBERS */
+  .numbers-band { background: var(--verde2); padding: 80px 60px; }
+  .numbers-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; margin-top: 48px; }
+  .number-box { background: rgba(255,255,255,0.03); padding: 36px 24px; border: 1px solid rgba(201,168,76,0.08); text-align: center; }
+  .number-box-val { font-family: 'Bebas Neue', sans-serif; font-size: 54px; color: var(--ouro-claro); line-height: 1; margin-bottom: 10px; }
+  .number-box-label { font-size: 13px; color: var(--cinza); line-height: 1.5; }
+
+  /* OBJECTION */
+  .objection { padding: 100px 60px; }
+  .objection-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+  .obj-item { padding: 28px; border-left: 3px solid rgba(255,255,255,0.08); }
+  .obj-item.active { border-left-color: var(--ouro); }
+  .obj-q { font-size: 16px; font-weight: 600; color: var(--branco); margin-bottom: 12px; }
+  .obj-a { font-size: 15px; color: var(--cinza); line-height: 1.7; }
+
+  /* FORM */
+  .form-section { background: var(--verde3); padding: 100px 60px; }
+  .form-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+  .form-left h2 { margin-bottom: 20px; }
+  .form-left p { font-size: 17px; color: rgba(248,245,238,0.65); line-height: 1.7; margin-bottom: 32px; }
+  .highlights { display: flex; flex-direction: column; gap: 16px; }
+  .highlight-item { display: flex; align-items: center; gap: 12px; font-size: 15px; color: rgba(248,245,238,0.75); }
+  .highlight-item::before { content: '→'; color: var(--ouro); font-size: 16px; }
+  .form { display: flex; flex-direction: column; gap: 14px; }
+  .form-group label { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--cinza); margin-bottom: 8px; }
+  .form-group input, .form-group select { width: 100%; background: rgba(255,255,255,0.05); border: 1px solid rgba(201,168,76,0.2); color: var(--branco); font-size: 15px; padding: 14px 18px; font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; }
+  .form-group input:focus, .form-group select:focus { border-color: var(--ouro); }
+  .form-group select option { background: var(--verde); }
+  .btn-submit { background: var(--ouro); color: #071a10; font-size: 16px; font-weight: 700; padding: 18px; width: 100%; border: none; cursor: pointer; font-family: 'DM Sans', sans-serif; margin-top: 8px; transition: background 0.2s; }
+  .btn-submit:hover { background: var(--ouro-claro); }
+
+  .iti {
+    width: 100%;
+  }
+
+  .phone-wrap {
+    width: 100%;
+  }
+
+  .iti input,
+  .iti input[type="tel"] {
+    width: 100%;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    color: var(--branco);
+    font-size: 15px;
+    padding: 14px 18px 14px 90px !important;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .iti input:focus,
+  .iti input[type="tel"]:focus {
+    border-color: var(--ouro);
+  }
+
+  .iti__country-container {
+    left: 0;
+  }
+
+  .iti--separate-dial-code .iti__selected-flag {
+    background: transparent !important;
+    border-right: 1px solid rgba(201,168,76,0.12);
+    padding: 0 12px 0 14px;
+  }
+
+  .iti__selected-flag:hover,
+  .iti__selected-flag:focus,
+  .iti__selected-flag[aria-expanded="true"] {
+    background: rgba(255,255,255,0.03) !important;
+  }
+
+  .iti__selected-dial-code {
+    color: var(--branco);
+    font-size: 15px;
+    margin-left: 8px;
+  }
+
+  .iti__arrow {
+    border-top-color: var(--ouro);
+  }
+
+  .iti__country-list {
+    background: #0d2b1e !important;
+    border: 1px solid rgba(201,168,76,0.18) !important;
+    color: var(--branco) !important;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+    width: 100% !important;
+    max-width: 100%;
+    margin-top: 8px;
+  }
+
+  .iti__country {
+    color: var(--branco) !important;
+    padding: 10px 12px;
+  }
+
+  .iti__country:hover,
+  .iti__country.iti__highlight {
+    background: rgba(201,168,76,0.12) !important;
+  }
+
+  .iti__dial-code {
+    color: rgba(248,245,238,0.65) !important;
+  }
+
+  .iti__search-input {
+    background: rgba(255,255,255,0.04) !important;
+    border: 1px solid rgba(201,168,76,0.15) !important;
+    color: var(--branco) !important;
+    outline: none;
+  }
+
+  .iti__search-input::placeholder {
+    color: rgba(248,245,238,0.45);
+  }
+
+  .iti__divider {
+    border-bottom-color: rgba(201,168,76,0.12) !important;
+  }
+
+  footer { padding: 32px 60px; border-top: 1px solid rgba(201,168,76,0.08); display: flex; justify-content: space-between; font-size: 12px; color: var(--cinza); }
+
+  @media (max-width: 900px) {
+    nav { padding: 20px 24px; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-left, .hero-right { padding: 48px 24px; }
+    .concept { padding: 60px 24px; }
+    .concept-grid { grid-template-columns: 1fr; gap: 40px; }
+    .numbers-band { padding: 60px 24px; }
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+    .objection { padding: 60px 24px; }
+    .objection-grid { grid-template-columns: 1fr; gap: 24px; }
+    .form-section { padding: 60px 24px; }
+    .form-inner { grid-template-columns: 1fr; gap: 40px; }
+    footer { flex-direction: column; gap: 12px; padding: 24px; }
+  }
+</style>
+
+  <!-- Meta Pixel -->
+  <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];
+      t=b.createElement(e);t.async=!0;
+      t.src=v;
+      s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window, document,'script','https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '1761905857999115');
+    fbq('init', '837741104784878');
+    fbq('track', 'PageView');
+  </script>
+
+  <noscript>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=1761905857999115&ev=PageView&noscript=1"/>
+    <img height="1" width="1" style="display:none"
+         src="https://www.facebook.com/tr?id=837741104784878&ev=PageView&noscript=1"/>
+  </noscript>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/css/intlTelInput.css"/>
+
+</head>
+<body>
+
+<nav>
+  <div class="logo">Referência <span>Capital</span></div>
+  <button class="nav-cta" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Agendar reunião</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <div class="pill">Para brasileiros no exterior</div>
+    <h1>Faça o câmbio<br><span class="highlight">trabalhar</span><br>por você</h1>
+    <p class="hero-sub">Com o dólar ou euro a seu favor, você pode comprar imóveis no Brasil de forma parcelada — e fazer o aluguel pagar as parcelas enquanto o imóvel valoriza.</p>
+    <button class="btn-hero" onclick="document.getElementById('form').scrollIntoView({behavior:'smooth'})">Entender minha estratégia →</button>
+    <p class="hero-note">Consultoria gratuita · Sem compromisso</p>
+  </div>
+  <div class="hero-right">
+    <div class="calc-title">Veja o câmbio trabalhando</div>
+    <div class="calc-card">
+      <div class="calc-label">Sua parcela mensal em reais</div>
+      <div class="calc-val">R$<span>2.300</span></div>
+      <div class="calc-sub">Para um imóvel de R$500.000</div>
+    </div>
+    <div class="calc-arrow">↓</div>
+    <div class="calc-card">
+      <div class="calc-label">Equivale a</div>
+      <div class="calc-val"><span>396</span> USD</div>
+      <div class="calc-sub">Câmbio aproximado: 5,8 para 1</div>
+    </div>
+    <div class="calc-arrow">↓</div>
+    <div class="calc-result">
+      <div class="calc-result-label">Por dia em dólares</div>
+      <div class="calc-result-val">≈ 13 USD</div>
+      <div class="calc-result-sub">Menos que um jantar casual nos EUA</div>
+    </div>
+  </div>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept">
+  <div class="section-label">A estratégia</div>
+  <h2>Alavancagem patrimonial<br>e auto-quitação</h2>
+  <p style="font-size:17px; color:rgba(248,245,238,0.65); max-width:560px; line-height:1.7;">Você compra o imóvel pagando de 20 a 30% do valor total — e quem paga o restante é o inquilino com o aluguel. Isso se chama auto-quitação.</p>
+  <div class="concept-grid">
+    <div class="concept-text">
+      <p>O consórcio imobiliário funciona como uma forma de compra parcelada <strong>sem juros</strong>. Diferente do financiamento bancário — onde você paga o imóvel duas ou três vezes pelo custo dos juros — no consórcio você paga apenas uma taxa administrativa pequena e tem acesso ao crédito integral.</p>
+      <p>Para brasileiros no exterior, esse mecanismo é especialmente poderoso porque <strong>não exige comprovação de renda no Brasil</strong>, e o câmbio favorável reduz o valor real das parcelas em moeda estrangeira.</p>
+      <p>Quando o imóvel é adquirido e colocado para locação — especialmente em modalidade de curta temporada — o retorno mensal frequentemente supera a parcela do consórcio. O resultado é um <strong>imóvel que se paga sozinho</strong> enquanto você ainda está no exterior.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-item">
+        <div class="flow-dot">1</div>
+        <div class="flow-body">
+          <h3>Obtenção do crédito</h3>
+          <p>Selecionamos o melhor grupo de consórcio e estudamos a forma mais inteligente de antecipar sua contemplação.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot">2</div>
+        <div class="flow-body">
+          <h3>Escolha do imóvel ideal</h3>
+          <p>Analisamos localização, potencial de valorização e retorno estimado com locação antes de indicar qualquer imóvel.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot">3</div>
+        <div class="flow-body">
+          <h3>Gestão de locação completa</h3>
+          <p>Cuidamos de toda a administração: fotos, anúncio, reservas e repasse. Você recebe o relatório mensal.</p>
+        </div>
+      </div>
+      <div class="flow-item">
+        <div class="flow-dot">4</div>
+        <div class="flow-body">
+          <h3>Auto-quitação em ação</h3>
+          <p>O aluguel cobre a parcela. Você constrói patrimônio sem comprometer sua renda no exterior.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers-band">
+  <div class="section-label">Por que funciona</div>
+  <h2>Números que comprovam</h2>
+  <div class="numbers-grid">
+    <div class="number-box">
+      <div class="number-box-val">+2.000</div>
+      <div class="number-box-label">Brasileiros expatriados com estratégia ativa</div>
+    </div>
+    <div class="number-box">
+      <div class="number-box-val">60-80%</div>
+      <div class="number-box-label">Da parcela mensal coberta pelo aluguel</div>
+    </div>
+    <div class="number-box">
+      <div class="number-box-val">0%</div>
+      <div class="number-box-label">De juros no consórcio imobiliário</div>
+    </div>
+    <div class="number-box">
+      <div class="number-box-val">5,8:1</div>
+      <div class="number-box-label">Câmbio dólar/real trabalhando por você</div>
+    </div>
+  </div>
+</div>
+
+<!-- OBJECTIONS -->
+<section class="objection">
+  <div class="section-label">Dúvidas comuns</div>
+  <h2>Respostas honestas</h2>
+  <div class="objection-grid">
+    <div class="obj-item active">
+      <p class="obj-q">Posso fazer isso sem declarar IR no Brasil?</p>
+      <p class="obj-a">Sim. O consórcio não exige vínculo fiscal brasileiro. Trabalhamos com sua documentação internacional e o processo é totalmente regular.</p>
+    </div>
+    <div class="obj-item active">
+      <p class="obj-q">Quanto tempo demora para o imóvel gerar renda?</p>
+      <p class="obj-a">Após a contemplação — que aceleramos com estratégias específicas — o imóvel é preparado e publicado para locação. Em geral, 90 a 120 dias do contrato até a primeira receita.</p>
+    </div>
+    <div class="obj-item active">
+      <p class="obj-q">E se eu não for contemplado logo?</p>
+      <p class="obj-a">Usamos estratégias de lance e seleção de grupos com alta taxa de contemplação. A maioria dos nossos clientes é contemplada nos primeiros meses.</p>
+    </div>
+    <div class="obj-item active">
+      <p class="obj-q">Preciso ir ao Brasil para assinar?</p>
+      <p class="obj-a">Não. Todo o processo — da assinatura do contrato ao registro do imóvel — pode ser feito à distância com procuração e documentação digital.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="form">
+  <div class="form-inner">
+    <div class="form-left">
+      <div class="section-label">Consultoria gratuita</div>
+      <h2>Monte seu plano<br>de alavancagem</h2>
+      <p>Um especialista vai analisar sua situação e mostrar, com números reais, quanto você pode construir de patrimônio nos próximos anos.</p>
+      <div class="highlights">
+        <div class="highlight-item">Análise personalizada da sua capacidade de investimento</div>
+        <div class="highlight-item">Simulação de retorno com locação por temporada</div>
+        <div class="highlight-item">Estratégia de contemplação acelerada</div>
+        <div class="highlight-item">Planejamento completo ponta a ponta</div>
+      </div>
+    </div>
+    <form class="form" id="leadForm">
+      <div class="form-group">
+        <label>Nome completo</label>
+        <input type="text" name="nome" placeholder="Seu nome" required>
+      </div>
+
+      <div class="form-group">
+        <label>WhatsApp (com código do país)</label>
+        <div class="phone-wrap">
+          <input id="telefone" type="tel" name="telefone" placeholder="WhatsApp" required>
+          <div id="telefone-status" style="font-size:12px; margin-top:6px; color:#8a8680;"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>E-mail</label>
+        <input type="email" name="email" placeholder="seu@email.com" required>
+      </div>
+
+      <div class="form-group">
+        <label>País onde mora</label>
+        <select name="pais" required>
+          <option value="">Selecione</option>
+          <option>Estados Unidos</option>
+          <option>Portugal</option>
+          <option>Reino Unido</option>
+          <option>França</option>
+          <option>Alemanha</option>
+          <option>Canadá</option>
+          <option>Outro</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Quanto pode investir mensalmente (R$)</label>
+        <select name="capacidadeInvestimento" required>
+          <option value="">Selecione</option>
+          <option>R$1.000 a R$2.000</option>
+          <option>R$2.000 a R$3.500</option>
+          <option>R$3.500 a R$5.000</option>
+          <option>Acima de R$5.000</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn" disabled>Quero minha estratégia personalizada →</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span>© 2025 Referência Capital · CRECI-SP</span>
+  <span>Política de Privacidade · Termos de Uso</span>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/intlTelInput.min.js"></script>
+<script>
+  const WEBHOOK_URL = "https://nitro-app.referenciacapital.tech/webhook/leadsLP";
+  const VALIDAR_WHATSAPP_URL = "https://nitro-app.referenciacapital.tech/webhook/validarWhatsApp";
+  const API_KEY = "n8n.uA5GXxCvJrsexY$et9PyrScGy-nitro";
+
+  function getCookie(name) {
+    const match = document.cookie.match(new RegExp("(^| )" + name + "=([^;]+)"));
+    return match ? match[2] : "";
+  }
+
+  const telefoneInput = document.querySelector("#telefone");
+  const telefoneStatus = document.getElementById("telefone-status");
+  const submitBtn = document.getElementById("submitBtn");
+  const form = document.getElementById("leadForm");
+
+  const iti = window.intlTelInput(telefoneInput, {
+    initialCountry: "br",
+    preferredCountries: ["br", "us", "pt"],
+    separateDialCode: true,
+    nationalMode: true,
+    autoPlaceholder: "aggressive",
+    formatOnDisplay: true,
+    utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@18.2.1/build/js/utils.js"
+  });
+
+  let telefoneValidoWhatsapp = false;
+  let telefoneValidationTimeout;
+
+  function setTelefoneStatus(message, color) {
+    telefoneStatus.textContent = message;
+    telefoneStatus.style.color = color;
+  }
+
+  function aplicarMascaraTelefone() {
+    const countryData = iti.getSelectedCountryData();
+    const iso2 = countryData.iso2;
+    let valor = telefoneInput.value.replace(/\D/g, "");
+
+    if (iso2 === "br") {
+      if (valor.length > 11) valor = valor.slice(0, 11);
+      if (valor.length > 10) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{4,5})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 2) {
+        telefoneInput.value = valor.replace(/^(\d{2})(\d{0,5}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "us") {
+      if (valor.length > 10) valor = valor.slice(0, 10);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,4}).*/, "($1) $2-$3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "($1) $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (iso2 === "pt") {
+      if (valor.length > 9) valor = valor.slice(0, 9);
+      if (valor.length > 6) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{3})(\d{0,3}).*/, "$1 $2 $3");
+      } else if (valor.length > 3) {
+        telefoneInput.value = valor.replace(/^(\d{3})(\d{0,3}).*/, "$1 $2");
+      } else {
+        telefoneInput.value = valor;
+      }
+      return;
+    }
+
+    if (valor.length > 12) valor = valor.slice(0, 12);
+    telefoneInput.value = valor.replace(/(\d{3})(?=\d)/g, "$1 ").trim();
+  }
+
+  async function validarWhatsApp() {
+    const numeroLimpo = iti.getNumber().replace(/\D/g, "");
+
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+
+    if (!numeroLimpo || numeroLimpo.length < 10) {
+      setTelefoneStatus("Digite um número válido com DDI.", "#ff8a8a");
+      return;
+    }
+
+    if (!iti.isValidNumber()) {
+      setTelefoneStatus("Formato de número inválido.", "#ff8a8a");
+      return;
+    }
+
+    setTelefoneStatus("Validando WhatsApp...", "#c9a84c");
+
+    try {
+      const response = await fetch(`${VALIDAR_WHATSAPP_URL}?telefone=${encodeURIComponent(numeroLimpo)}`, {
+        method: "GET",
+        headers: {
+          "api-key": API_KEY
+        }
+      });
+
+      const data = await response.json();
+      const resultado = Array.isArray(data) ? data[0] : data;
+
+      const whatsappExiste =
+              resultado &&
+              (
+                      resultado.existe === true ||
+                      resultado.existe === "true" ||
+                      resultado.exists === true ||
+                      resultado.exists === "true"
+              );
+
+      if (whatsappExiste) {
+        telefoneValidoWhatsapp = true;
+        submitBtn.disabled = false;
+        setTelefoneStatus("WhatsApp válido.", "#7ed957");
+      } else {
+        telefoneValidoWhatsapp = false;
+        submitBtn.disabled = true;
+        setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      }
+    } catch (error) {
+      console.error("Erro ao validar WhatsApp:", error);
+      telefoneValidoWhatsapp = false;
+      submitBtn.disabled = true;
+      setTelefoneStatus("Não foi possível validar o número.", "#ff8a8a");
+    }
+  }
+
+  telefoneInput.addEventListener("input", function () {
+    aplicarMascaraTelefone();
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("Digitando...", "#8a8680");
+
+    clearTimeout(telefoneValidationTimeout);
+    telefoneValidationTimeout = setTimeout(() => {
+      validarWhatsApp();
+    }, 800);
+  });
+
+  telefoneInput.addEventListener("blur", function () {
+    clearTimeout(telefoneValidationTimeout);
+    validarWhatsApp();
+  });
+
+  telefoneInput.addEventListener("countrychange", function () {
+    telefoneInput.value = "";
+    telefoneValidoWhatsapp = false;
+    submitBtn.disabled = true;
+    setTelefoneStatus("", "#8a8680");
+  });
+
+  form.addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    if (!telefoneValidoWhatsapp) {
+      setTelefoneStatus("Número de WhatsApp inválido.", "#ff8a8a");
+      return;
+    }
+
+    const formData = new FormData(this);
+
+    const payload = {
+      nome: formData.get("nome"),
+      telefone: iti.getNumber().replace(/\D/g, ""),
+      email: formData.get("email"),
+      pais: formData.get("pais"),
+      capacidadeInvestimento: formData.get("capacidadeInvestimento"),
+      utmSource: window.location.href,
+      produto: "Consórcio Brasileiro",
+      _fbc: getCookie("_fbc"),
+      _fbp: getCookie("_fbp"),
+      trafficSource: "Paid",
+      first_traffic_source: "Paid"
+    };
+
+    try {
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": API_KEY
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (res.ok) {
+        fbq("track", "Lead", {
+          value: 1,
+          currency: "BRL"
+        });
+
+        setTimeout(() => {
+          window.location.href = "https://referenciacapital.com.br/investimento-estrangeiros-obrigado/";
+        }, 500);
+      } else {
+        alert("Erro ao enviar.");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("Erro de conexão.");
+    }
+  });
+</script>
+</body>
+</html>
